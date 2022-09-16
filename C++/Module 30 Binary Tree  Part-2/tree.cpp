@@ -95,14 +95,11 @@ int main()
 {
     int n;
     cin >> n;
-
     treeNode* allNodes[n];
-
     for (int i = 0; i < n; i++)
     {
         allNodes[i] = new treeNode(-1);
     }
-
     for (int i = 0; i < n; i++)
     {
         int value, left, right;
