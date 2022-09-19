@@ -311,29 +311,39 @@ int main()
     treeNode* root = inputLevelOrder();
 
 
-    cout << endl;
-    boundaryTraversal(root);
-    cout << endl;
+//    cout << endl;
+//    boundaryTraversal(root);
+//    cout << endl;
 
 //    cout << endl;
 //    printTree(root, 0);
 //    cout << endl;
 //
-//    string inOrderTraversal = "";
-//    string preOrderTraversal = "";
-//    string postOrderTraversal = "";
-//    string levelOrderTraversal = "";
-//
-//    inOrder(root, inOrderTraversal);
-//    preOrder(root, preOrderTraversal);
-//    postOrder(root, postOrderTraversal);
-//    levelOrder(root, levelOrderTraversal);
-//
-//    cout << "In Order Traversal: " << inOrderTraversal << endl;
-//    cout << "Pre Order Traversal: " << preOrderTraversal << endl;
-//    cout << "Post Order Traversal: " << postOrderTraversal << endl;
-//    cout << "Level Order Traversal: " << levelOrderTraversal << endl;
-//
+    string leftInorder = "";
+    string leftPreOrder = "";
+    string leftPostOrder = "";
+    inOrder(root->leftChild, leftInorder);
+    preOrder(root->leftChild, leftPreOrder);
+    postOrder(root->leftChild, leftPostOrder);
+    cout << "Left " << endl;
+    cout << "In Order Traversal: " << leftInorder << endl;
+    cout << "Pre Order Traversal: " << leftPreOrder << endl;
+    cout << "Post Order Traversal: " << leftPostOrder << endl;
+
+    cout << endl << endl << "Right: " << endl;
+
+    string rightInorder = "";
+    string rightPreOrder = "";
+    string rightPostOrder = "";
+    inOrder(root->rightChild, rightInorder);
+    preOrder(root->rightChild, rightPreOrder);
+    postOrder(root->rightChild, rightPostOrder);
+    cout << "Right " << endl;
+    cout << "In Order Traversal: " << rightInorder << endl;
+    cout << "Pre Order Traversal: " << rightPreOrder << endl;
+    cout << "Post Order Traversal: " << rightPostOrder << endl;
+
+
     cout << endl;
     printTree(root, 0);
     cout << endl;
@@ -373,6 +383,13 @@ Right:
         Left: 7
         Right: 8
     Right: 6
+
+
+1
+2 2
+3 4 4 3
+-1 -1 5 6 6 5 -1 -1
+-1 -1 -1 -1 -1 -1 -1 -1
 
 
 */
