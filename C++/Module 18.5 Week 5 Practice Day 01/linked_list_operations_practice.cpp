@@ -285,7 +285,6 @@ Array searchByValueDuplicate(Node* head, int searchValue)
         positions.arr[0] = k;
     }
 
-
     return positions;
 
 }
