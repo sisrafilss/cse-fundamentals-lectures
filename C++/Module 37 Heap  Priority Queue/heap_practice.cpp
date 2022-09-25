@@ -10,13 +10,13 @@ void swap(int *a, int *b)
 
 void heapify(int arr[], int n, int current)
 {
-    int largest = current; // here, current is the i'th index calculated by size of array / 2 - 1, Because Non-Leaf node started from here in a complete binary tree based on level order traversal.
-    int leftChild = 2 * current + 1;
-    int rightChild = 2 * current + 2;
+    int largest = current;
+    int leftChild = current * 2 + 1;
+    int rightChild = current * 2 + 2;
 
     if (leftChild < n && arr[leftChild] > arr[largest])
     {
-        largest = leftChild; // 3
+        largest = leftChild;
     }
 
     if (rightChild < n && arr[rightChild] > arr[largest])
@@ -40,6 +40,16 @@ void printArray(int arr[], int n)
     cout << endl;
 }
 
+
+void heapSort(int arr[], int n)
+{
+    for (int i = n - 1; i >= 0; i--)
+    {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+
 int main()
 {
     int n;
@@ -50,42 +60,36 @@ int main()
         cin >> arr[i];
     }
 
-    cout << "Before: ";
+    cout << "Before heapify: " << endl;
     printArray(arr, n);
+    cout << endl;
 
-    int nonLeafStart = (n / 2) - 1;
+    int nonLeafStart = n / 2 - 1;
     for (int i = nonLeafStart; i >= 0; i--)
     {
         heapify(arr, n, i);
     }
 
-    cout << "After: ";
+    cout << "After heapify: "<< endl;
     printArray(arr, n);
+    cout << endl;
+
+    cout << "After Heap Sort" << endl;
+    heapSort(arr, n);
+    printArray(arr, n);
+    cout << endl;
 
     return 0;
 }
 
-
-
-
-
-
-
 /*
+Input:
 9
 2 10 1 5 4 8 3 8 7
+
+Output: 10 8 8 7 4 1 3 5 2
+
+
 */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
