@@ -46,8 +46,12 @@ void heapSort(int arr[], int n)
     for (int i = n - 1; i >= 0; i--)
     {
         swap(arr[0], arr[i]);
+        printArray(arr, n);
+        cout << endl << endl << endl;
         heapify(arr, i, 0);
+
     }
+
 }
 
 int main()
@@ -59,21 +63,21 @@ int main()
     {
         cin >> arr[i];
     }
+//
+//    cout << "Before heapify: " << endl;
+//    printArray(arr, n);
+//    cout << endl;
 
-    cout << "Before heapify: " << endl;
-    printArray(arr, n);
-    cout << endl;
+//    int nonLeafStart = n / 2 - 1;
+//    for (int i = nonLeafStart; i >= 0; i--)
+//    {
+//        heapify(arr, n, i);
+//    }
 
-    int nonLeafStart = n / 2 - 1;
-    for (int i = nonLeafStart; i >= 0; i--)
-    {
-        heapify(arr, n, i);
-    }
-
-    cout << "After heapify: "<< endl;
-    printArray(arr, n);
-    cout << endl;
-
+//    cout << "After heapify: "<< endl;
+//    printArray(arr, n);
+//    cout << endl;
+//
     cout << "After Heap Sort" << endl;
     heapSort(arr, n);
     printArray(arr, n);

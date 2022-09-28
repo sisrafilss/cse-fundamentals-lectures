@@ -30,7 +30,8 @@ string infixToPrefix(string infix)
     reverse(infix.begin(), infix.end());
 
     // Step 2
-    Stack<char> st;
+    stack<char> st;
+    stack<char> observe;
     string result;
     int len = infix.length();
     for (int i = 0; i < len; i++)
@@ -41,30 +42,43 @@ string infixToPrefix(string infix)
         }
         else if (infix[i] == ')')
         {
-            st.Push(infix[i]);
+            st.push(infix[i]);
         }
         else if (infix[i] == '(')
         {
-            while (!st.Empty() && st.Top() != ')')
+            while (!st.empty() && st.top() != ')')
             {
-                result += st.Pop();
+
+                result += st.top();
+                st.pop();
             }
-            st.Pop();
+            st.pop();
         }
         else
         {
-            while (!st.Empty() && precedenceCalc(st.Top()) >= precedenceCalc(infix[i]))
+            while (!st.empty() && precedenceCalc(st.top()) >= precedenceCalc(infix[i]))
             {
-                result += st.Pop();
+                result += st.top();
+                st.pop();
             }
-            st.Push(infix[i]);
+            st.push(infix[i]);
         }
+
+//        observe = st;
+//        cout << "Step " << i + 1 << ":    ";
+//        while (!observe.empty())
+//        {
+//            cout << observe.top();
+//            observe.pop();
+//        }
+//        cout << endl;
     }
 
     // Step 3
-    while (!st.Empty())
+    while (!st.empty())
     {
-        result += st.Pop();
+        result += st.top();
+        st.pop();
     }
 
     // Step 4
@@ -78,7 +92,8 @@ string infixToPrefix(string infix)
 string infixToPostfix(string infix)
 {
     // Step 1
-    Stack<char> st;
+    stack<char> st;
+    stack<char> observe;
     string result;
     int len = infix.length();
     for (int i = 0; i < len; i++)
@@ -89,131 +104,177 @@ string infixToPostfix(string infix)
         }
         else if (infix[i] == '(')
         {
-            st.Push(infix[i]);
+            st.push(infix[i]);
         }
         else if (infix[i] == ')')
         {
-            while (!st.Empty() && st.Top() != '(')
+            while (!st.empty() && st.top() != '(')
             {
-                result += st.Pop();
+                result += st.top();
+                st.pop();
             }
-            st.Pop();
+            st.pop();
         }
         else
         {
-            while (!st.Empty() && precedenceCalc(st.Top()) >= precedenceCalc(infix[i]))
+            while (!st.empty() && precedenceCalc(st.top()) >= precedenceCalc(infix[i]))
             {
-                result += st.Pop();
+                result += st.top();
+                st.pop();
             }
-            st.Push(infix[i]);
+            st.push(infix[i]);
         }
+//        observe = st;
+//        cout << "Step " << i + 1 << ":    ";
+//        while (!observe.empty())
+//        {
+//            cout << observe.top();
+//            observe.pop();
+//        }
+//        cout << endl;
     }
 
     // Step 2
-    while (!st.Empty())
+    while (!st.empty())
     {
-        result += st.Pop();
+        result += st.top();
+        st.pop();
     }
 
     return result;
 }
 
+
  int prefixEvaluation(string chk)
  {
-    Stack<int> st;
+    stack<int> st;
+    stack<int> observe;
     int len = chk.length();
-
+    int step = 1;
     for (int i = len - 1; i >= 0; i--)
     {
         if (chk[i] >= '0' && chk[i] <= '9')
         {
-            st.Push(chk[i] - '0');
+            st.push(chk[i] - '0');
         }
         else
         {
-            int a = st.Pop();
-            int b = st.Pop();
+            int a = st.top();
+            st.pop();
+            int b = st.top();
+            st.pop();
 
             switch(chk[i])
             {
             case '+':
-                st.Push(a+b);
+                st.push(a+b);
                 break;
             case '-':
-                st.Push(a-b);
+                st.push(a-b);
                 break;
             case '*':
-                st.Push(a*b);
+                st.push(a*b);
                 break;
             case '/':
-                st.Push(a/b);
+                st.push(a/b);
                 break;
             case '^':
-                st.Push(pow(a, b));
+                st.push(pow(a, b));
                 break;
             default:
                 break;
             }
         }
+        observe = st;
+        cout << "Step " << step << ":    ";
+        while (!observe.empty())
+        {
+            cout << observe.top();
+            observe.pop();
+        }
+        cout << endl;
+        step++;
     }
-    return st.Top();
+    return st.top();
  }
+
+
 
  int postfixEvaluation(string chk)
  {
-    Stack<int> st;
+    stack<int> st;
     int len = chk.length();
+
+    // for observing the stack
+    stack<int> observe;
+    int step = 1;
 
     for (int i = 0; i < len; i++)
     {
         if (chk[i] >= '0' && chk[i] <= '9')
         {
-            st.Push(chk[i] - '0');
+            st.push(chk[i] - '0');
         }
         else
         {
-            int a = st.Pop();
-            int b = st.Pop();
+            int b = st.top();
+            st.pop();
+            int a = st.top();
+            st.pop();
 
             switch(chk[i])
             {
             case '+':
-                st.Push(a+b);
+                st.push(a+b);
                 break;
             case '-':
-                st.Push(a-b);
+                st.push(a-b);
                 break;
             case '*':
-                st.Push(a*b);
+                st.push(a*b);
                 break;
             case '/':
-                st.Push(a/b);
+                st.push(a/b);
                 break;
             case '^':
-                st.Push(pow(a, b));
+                st.push(pow(a, b));
                 break;
             default:
                 break;
             }
         }
+        observe = st;
+        cout << "Step " << step << ":    ";
+        while (!observe.empty())
+        {
+            cout << observe.top();
+            observe.pop();
+        }
+        cout << endl;
+        step++;
     }
-    return st.Top();
+    return st.top();
  }
+
 
 int main()
 {
-//    string s;
+    string s;
 //    int a, b;
-//    cin >> s;
+    cin >> s;
 
 //    string infix = "(+9*3/84)";
-//    string prefix = infixToPrefix(infix);
-//    string postfix = infixToPostfix(infix);
+    string prefix = infixToPrefix(s);
+    string postfix = infixToPostfix(s);
 //
 //    cout << "Infix: " << infix << endl;
-//    cout <<"Prefix: " << prefix << endl;
-//    cout <<"Postfix: " << postfix << endl;
-    cout << "Result: " << prefixEvaluation("(+9*3/84)") << endl;
+    cout <<"Prefix: " << prefix << endl << endl;
+    cout <<"Postfix: " << postfix << endl << endl;
+
+    prefixEvaluation(prefix);
+   postfixEvaluation(postfix);
+
+
 
 
 

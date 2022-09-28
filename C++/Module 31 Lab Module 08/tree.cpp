@@ -78,6 +78,7 @@ void inOrder(treeNode* root, string& chk)
 
     inOrder(root->leftChild, chk);
     chk += to_string(root->data);
+    cout << root->data << " ";
     inOrder(root->rightChild, chk);
 }
 
@@ -89,6 +90,7 @@ void preOrder(treeNode* root, string& chk)
         return;
 
     chk += to_string(root->data);
+    cout << root->data << " ";
     preOrder(root->leftChild, chk);
     preOrder(root->rightChild, chk);
 }
@@ -103,6 +105,7 @@ void postOrder(treeNode* root, string& chk)
     postOrder(root->leftChild, chk);
     postOrder(root->rightChild, chk);
     chk += to_string(root->data);
+    cout << root->data << " ";
 }
 
 
@@ -123,6 +126,7 @@ void levelOrder(treeNode* root, string& chk)
         if (currentNode != NULL)
         {
             chk += to_string(currentNode->data);
+            cout << currentNode->data << " ";
             if (currentNode->leftChild != NULL)
             {
                 q.push(currentNode->leftChild);
@@ -291,61 +295,27 @@ treeNode* inputLevelOrder()
 
 int main()
 {
-
-//    int n;
-//    cin >> n;
-//    int preorder[n], inorder[n];
-//
-//    for (int i= 0; i < n; i++)
-//    {
-//        cin >> preorder[i];
-//    }
-//    for (int i= 0; i < n; i++)
-//    {
-//        cin >> inorder[i];
-//    }
-//    treeNode* root = buildTreePreIn(preorder, inorder, 0, n - 1);
-
-
-    // Taking input in level order
     treeNode* root = inputLevelOrder();
 
+    string inorder = "";
+    string preorder = "";
+    string postorder = "";
+    string levelorder = "";
 
-//    cout << endl;
-//    boundaryTraversal(root);
-//    cout << endl;
-
-//    cout << endl;
-//    printTree(root, 0);
-//    cout << endl;
-//
-    string leftInorder = "";
-    string leftPreOrder = "";
-    string leftPostOrder = "";
-    inOrder(root->leftChild, leftInorder);
-    preOrder(root->leftChild, leftPreOrder);
-    postOrder(root->leftChild, leftPostOrder);
-    cout << "Left " << endl;
-    cout << "In Order Traversal: " << leftInorder << endl;
-    cout << "Pre Order Traversal: " << leftPreOrder << endl;
-    cout << "Post Order Traversal: " << leftPostOrder << endl;
-
-    cout << endl << endl << "Right: " << endl;
-
-    string rightInorder = "";
-    string rightPreOrder = "";
-    string rightPostOrder = "";
-    inOrder(root->rightChild, rightInorder);
-    preOrder(root->rightChild, rightPreOrder);
-    postOrder(root->rightChild, rightPostOrder);
-    cout << "Right " << endl;
-    cout << "In Order Traversal: " << rightInorder << endl;
-    cout << "Pre Order Traversal: " << rightPreOrder << endl;
-    cout << "Post Order Traversal: " << rightPostOrder << endl;
-
-
+    cout << "In order: ";
+    inOrder(root, inorder);
     cout << endl;
-    printTree(root, 0);
+
+    cout << "Pre Order: ";
+    preOrder(root, preorder);
+    cout << endl;
+
+    cout << "Post Order: ";
+    postOrder(root, postorder);
+    cout << endl;
+
+    cout << "Level Order: ";
+    levelOrder(root, levelorder);
     cout << endl;
 
     return 0;
@@ -389,6 +359,19 @@ Right:
 2 2
 3 4 4 3
 -1 -1 5 6 6 5 -1 -1
+-1 -1 -1 -1 -1 -1 -1 -1
+
+1
+2 3
+4 5 7 -1
+-1 -1 -1 6 -1 -1
+-1 -1
+
+
+15
+11 26
+8 12 20 30
+6 9 -1 14 -1 -1 -1 35
 -1 -1 -1 -1 -1 -1 -1 -1
 
 

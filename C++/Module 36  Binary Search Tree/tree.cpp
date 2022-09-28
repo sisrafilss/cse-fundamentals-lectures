@@ -31,6 +31,9 @@ int searchPosition(int inorder[], int searchValue, int start, int end);
 treeNode* buildTreePreIn(int preorder[], int inorder[], int start, int end);
 treeNode* inputLevelOrder();
 treeNode* insertionBST(treeNode* root, int val);
+treeNode* searchBST(treeNode* root, int value);
+treeNode* inorderSucc(treeNode* root);
+treeNode* deletionBST(treeNode* root, int value);
 
 
 void printTree(treeNode* root, int level)
@@ -123,6 +126,7 @@ void levelOrder(treeNode* root, string& chk)
 
         if (currentNode != NULL)
         {
+            cout << currentNode->data << " ";
             chk += to_string(currentNode->data);
             if (currentNode->leftChild != NULL)
             {
@@ -346,6 +350,7 @@ treeNode* inorderSucc(treeNode* root)
     return curr;
 }
 
+
 treeNode* deletionBST(treeNode* root, int value)
 {
     if (value < root->data)
@@ -383,27 +388,14 @@ treeNode* deletionBST(treeNode* root, int value)
 
 int main()
 {
-    treeNode* root = NULL;
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        root = insertionBST(root, x);
-    }
+    treeNode* root = inputLevelOrder();
+    printTree(root, 0);
 
-    string traversal = "";
-    inOrder(root, traversal);
-    cout << traversal << endl;
+    insertionBST(root, 11);
+    deletionBST(root, 6);
 
-    int key;
-    cin >> key;
-    root = deletionBST(root, key);
 
-    traversal = "";
-    inOrder(root, traversal);
-    cout << traversal << endl;
+    printTree(root, 0);
 
     return 0;
 }
@@ -411,8 +403,11 @@ int main()
 
 
 /*
-9
-11 5 4 43 34 1 2 7 21
+7
+5 13
+3 6 9 15
+1 4 -1 -1 8 10 -1 17
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 
 */
 
