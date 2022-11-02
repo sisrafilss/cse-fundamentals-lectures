@@ -35,21 +35,21 @@ class RideManager:
         if len(vehicles) == 0:
             print("Sorry! No car is available")
             return False
-        for car in vehicles:
-            if abs(rider.location - car.driver.location) < 30:
+        for vehicle in vehicles:
+            if abs(rider.location - vehicle.driver.location) < 30:
                 distance = abs(rider.location - destination)
-                fare = distance * car.rate
+                fare = distance * vehicle.rate
                 if rider.balance < fare:
                     print("You do not have enough balance for this ride", fare, rider.balance)
                     return False
-                if car.status == 'available':
-                    car.status = 'unavailable'
-                    vehicles.remove(car)
+                if vehicle.status == 'available':
+                    vehicle.status = 'unavailable'
+                    vehicles.remove(vehicle)
 
-                    trip_info = f"Match for {rider.name} for fare: {fare} with {car.driver.name} started: {rider.location} to {destination}"
+                    trip_info = f"Match for {rider.name} for fare: {fare} with {vehicle.driver.name} started: {rider.location} to {destination}"
                     self.__trip_history.append(trip_info)
                     rider.start_trip(fare, trip_info)
-                    car.driver.start_a_trip(rider.location, destination, fare * 0.8, trip_info)
+                    vehicle.driver.start_a_trip(rider.location, destination, fare * 0.8, trip_info)
 
                     self.__income += fare * 0.2
                     print(trip_info)
