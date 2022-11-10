@@ -6,9 +6,9 @@ def main():
     # print("Aircraft: ", trip_info.aircraft)
     # print("Price: ", trip_info.price)
 
-    trip_cities = ['DUB', 'ORD', 'LHR', 'JFK', 'SYD' ]
+    trip_cities = ['DUB', 'ORD', 'JFK', 'SYD', 'LHR' ]
     trip_info2 = travel_agent.set_trip_multi_city_flexible_route(trip_cities, '05/11/2565')
-    print('price', trip_info2[1])
+    print('Total Price:', trip_info2[1])
     for trip in trip_info2[0]:
         print(trip)
     # print(trip_info2)

@@ -2,7 +2,7 @@ import csv
 from Airport import Airport
 from math import radians, sin, cos, atan2, sqrt
 
-class All_Airport:
+class AllAirports:
     def __init__(self) -> None:
         self.airports = None
         self.load_airport_data("./data/airports.csv")
@@ -33,7 +33,11 @@ class All_Airport:
             try:
                 for line in lines:
                     country = line[3]
+                    if country not in country_currency:
+                        continue
                     currency_alphabetic_code = country_currency[country]
+                    if currency_alphabetic_code not in currency_rate:
+                        continue
                     rate = currency_rate[currency_alphabetic_code]
                     airports[line[4]] = Airport(line[4], line[1], line[2], line[3], line[6], line[7], rate)
             except KeyError as e:
@@ -68,6 +72,6 @@ class All_Airport:
         fare = distance * airport1.rate
         return fare
 
-world_tour = All_Airport()
-fare = world_tour.get_ticket_price("DAC", "MZR")
-print("Ticket Fare: ", fare)
+# world_tour = AllAirports()
+# fare = world_tour.get_ticket_price("DAC", "MZR")
+# print("Ticket Fare: ", fare)

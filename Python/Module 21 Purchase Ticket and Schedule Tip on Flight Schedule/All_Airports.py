@@ -74,6 +74,6 @@ class AllAirports:
         fare = distance * airport1.rate
         return fare
 
-world_tour =  AllAirports()
-fare = world_tour.get_ticket_price("DAC", "CXB") # Dhaka to New Cox'es Bazar
-print("Ticket Fare:", fare)
+# world_tour =  AllAirports()
+# fare = world_tour.get_ticket_price("DAC", "CXB") # Dhaka to New Cox'es Bazar
+# print("Ticket Fare:", fare)
