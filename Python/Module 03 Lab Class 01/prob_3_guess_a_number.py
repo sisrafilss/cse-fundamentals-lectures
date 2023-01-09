@@ -1,6 +1,0 @@
-x = input("Guess a number")
-x = input('Multiply 2 with your number')
-x = input('Add 8 with the result')
-x = input('Divide the whole result with 2')
-x = input('Substract the guessed number from the result')
-print('Your guessed number is 4')
