@@ -3,6 +3,6 @@ Practice Problem Set: https://docs.google.com/document/d/1m9AP3x1FdZepBC_BvD97DS
 Answer:
 1. Time - O(max(N, M)) | Space - O(M*N)
 2. Time - O(n^2) | Space - O(1)
-3. Time & Space - O(logN) - (Not Sure)
+3. Time & Space - O(logN)
 4. See matrix_to_list.cpp and list_to_matrix.cpp
 5. See edge_list_to_adj_matrix.cpp and edge_list_to_adj_list.cpp
