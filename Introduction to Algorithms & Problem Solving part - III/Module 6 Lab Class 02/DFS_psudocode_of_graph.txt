@@ -1,0 +1,16 @@
+// graph
+// visited array
+visited[] // all set to false initially
+void dfs(node):
+    print(node)
+    visited[node] = true
+    
+    for each adj_node of node:
+        if visited[adj_node] == false:
+            dfs(adj_node)
+
+
+
+Complexity:
+    Time - O(V+E)
+    Space - O(V)
